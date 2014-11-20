@@ -11,7 +11,7 @@ typedef struct BiTNode {
 typedef BiTNode * BiTree;
 
 /*
- *创建二叉树
+ *    创建二叉树
  *每个节点的空指针引出一个虚节点，当输入为‘#’时即判断为空
  *如果要操作指针，传入的参数要是二级指针
  */

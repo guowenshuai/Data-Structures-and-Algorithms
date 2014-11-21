@@ -25,7 +25,7 @@ void CreateBiTree (BiTree *T) {
 		 *	方法三、在scanf ("%c",&ch); 后加getchar();吸收掉stdin中的回车符
 		 */
 //	scanf (" %c",&ch);
-	scanf ("%c",&ch);
+	scanf ("%c%*c",&ch);
 	getchar();
 	if(ch == '#') {
 		(*T) = NULL;

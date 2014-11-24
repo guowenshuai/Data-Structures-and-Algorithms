@@ -51,7 +51,7 @@ void TraverserInOrderThreading (BiThrTree p) {
 		
 		while (p) {
 			printf("%c\n",p->data);
-			p = InorderThrfind (p , p->data);	//找到该节点的 后继节点
+			p = InorderThrfind (p , p->data);	//中序线索二叉树后继节点
 		}
 	}
 

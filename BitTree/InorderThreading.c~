@@ -15,7 +15,8 @@ typedef struct node {
 } BiThrNode;
 typedef BiThrNode *BiThrTree;
 
-BiThrTree InorderThrfind (BiThrTree p, DataType data);
+BiThrTree InorderThrfindb (BiThrTree p, DataType data);
+BiThrTree InorderThrfindbjd (BiThrTree p);
 void TraverserInOrderThreading (BiThrTree p);
 void InorderThreading (BiThrTree p);
 
@@ -51,14 +52,14 @@ void TraverserInOrderThreading (BiThrTree p) {
 		
 		while (p) {
 			printf("%c\n",p->data);
-			p = InorderThrfindjd (p);	//找到该节点的 后继节点
+			p = InorderThrfindbjd (p);	//找到该节点的 后继节点
 		}
 	}
 
 }
 
  /* 中序线索二叉树 查找后继节点 ———— 设计思想从跟节点开始*/
-BiThrTree InorderThrfind (BiThrTree p, DataType data) {
+BiThrTree InorderThrfindb (BiThrTree p, DataType data) {
 	/*找到线索二叉树的起始节点*/
 	if (p) {
 		while (p->ltag == 0) 
@@ -82,7 +83,8 @@ BiThrTree InorderThrfind (BiThrTree p, DataType data) {
 	
 }
 	
-BiThrTree InorderThrfindjd (BiThrTree p) {	
+ /* 中序线索二叉树 查找后继节点 ———— 设计思想从给定节点处开始*/	
+BiThrTree InorderThrfindbjd (BiThrTree p) {	
 	/* 查找该节点的后继 */
 	if (p->rtag == 1)
 		return p->rchild;
@@ -95,7 +97,29 @@ BiThrTree InorderThrfindjd (BiThrTree p) {
 
 }
 
-
+ /* 中序线索二叉树 查找前趋节点 ---- 从给定节点处开始 */
+BiThrTree InorderThrfindp (BiThrTree p, DataType data) {
+	/*找到线索二叉树的起始节点*/
+	if (p) {
+		while (p->ltag == 0) 
+			p = p->lchild;
+	}	
+	/* 找到data节点 */
+	while (p->data != data) 
+		p = p->rchild;
+	
+	if (p) {
+		if (p->ltag == 1)
+			return p->lchild;
+		else {
+			p = p->lchild;
+			while (p->rtag == 0)
+				p = p->rchild;
+			return p;
+		}
+	}
+}
+ 
  /* 中序创建二叉树 */
 void CreateBiTree (BiThrTree *T) {
 	DataType ch;
@@ -132,6 +156,18 @@ int main (void)	{
 
 	BiThrTree ret = NULL;
 	char data = 'E';
-	ret = InorderThrfind(T, data);	
-	printf("ret->data:%c\n",ret->data);
+	ret = InorderThrfindb (T, data);	
+	printf ("B=ret->data:%c\n", ret->data);
+	
+	ret = InorderThrfindp (T, data);
+	printf ("P=ret->data:%c\n", ret->data);
+		
 }
+
+
+
+
+
+
+
+
